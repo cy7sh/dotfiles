@@ -54,5 +54,8 @@ button = "left"
 cmd = "pavucontrol"
 
 [[block]]
+block = "backlight"
+
+[[block]]
 block = "time"
 format = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %H:%M') "

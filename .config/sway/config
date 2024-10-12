@@ -205,7 +205,7 @@ exec swayidle -w \
 
 
 
-exec_always nm-applet --indicator
+#exec_always nm-applet --indicator
 exec dbus-update-activation-environment --all
 exec sway-audio-idle-inhibit
 

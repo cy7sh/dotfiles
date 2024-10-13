@@ -9,9 +9,9 @@ set $term $HOME/.config/sway/scripts/terminal.sh
 set $menu rofi -show drun | xargs swaymsg exec --
 set $screenshot grim -g "$(slurp)" - | wl-copy
 set $browser chromium --new-window
-set $clipboard rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+set $clipboard rofi -show clipboard -show-icons
 set $emoji rofimoji
-set $calc rofi -show calc -modi calc -no-show-match -no-sort
+set $calc rofi -show calc -no-show-match -no-sort
 set $youtube $HOME/.config/sway/scripts/youtube.sh
 set $music chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
 set $rss chromium --profile-directory=Default --app-id=ghncceofpdlcdigkealkgbemafcmicmh
@@ -176,6 +176,7 @@ input "type:keyboard" {
   xkb_numlock enabled
 }
 
+exec wl-paste --watch cliphist store
 exec mako > /tmp/mako.log 2>&1
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec swayidle -w \

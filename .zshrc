@@ -38,8 +38,6 @@ plugins=(git
 	ssh
 	sudo
 	tmux
-	web-search
-  pass
 	)
 
 source $ZSH/oh-my-zsh.sh
@@ -62,3 +60,7 @@ export PATH=$PATH:/home/yt/.cargo/bin
 
 export FZF_BASE=/usr/bin
 export FZ_DEFAULT_COMMAND=rg
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

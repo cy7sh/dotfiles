@@ -88,6 +88,10 @@ local plugin_specs = {
 
   { "andymass/vim-matchup", event = "BufRead" },
 
+  { "windwp/nvim-autopairs", event = "InsertEnter" },
+
+  { "tpope/vim-commentary", event = "VeryLazy" },
+
   { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
 }
 

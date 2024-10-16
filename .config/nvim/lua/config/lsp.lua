@@ -8,6 +8,10 @@ keymap.set("n", "gr", lsp.buf.references)
 keymap.set("n", "[d", diagnostic.goto_prev)
 keymap.set("n", "]d", diagnostic.goto_next)
 
+diagnostic.config {
+  signs = false,
+}
+
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 

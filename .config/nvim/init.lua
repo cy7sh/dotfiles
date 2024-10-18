@@ -1,14 +1,22 @@
 require("plugin_specs")
 
 local keymap = vim.keymap
-local lsp = vim.lsp
-local diagnostic = vim.diagnostic
 local opt = vim.opt
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 require("nvim-tree").setup()
+
+require("lualine").setup {
+  options = {
+    theme = "auto",
+    icons_enabled = true,
+    globalstatus = true,
+  }
+}
+
+require("gitsigns").setup()
 
 opt.tabstop = 2
 opt.softtabstop = 2
@@ -21,6 +29,8 @@ opt.confirm = true
 opt.history = 500
 opt.undofile = true
 opt.termguicolors = true
+opt.showmode = false
+opt.mouse = ""
 
 vim.cmd.colorscheme "tokyonight-night"
 
@@ -36,9 +46,8 @@ keymap.set("n", "<space>s", require("nvim-tree.api").tree.toggle, {
 -- shortcut to command mode
 keymap.set({ "n", "x" }, ";", ":", { silent = true })
 
-keymap.set("n", [[\d]], "<cmd>bprevious <bar> bdelete #<cr>", {
+keymap.set("n", [[\d]], "<cmd>close<cr>", {
   silent = true,
-  desc = "delete current buffer",
 })
 
 keymap.set("n", "<space>o", "printf('m`%so<ESC>``', v:count1)", {

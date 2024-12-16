@@ -4,9 +4,10 @@
   fetchFromGitHub,
   fetchYarnDeps,
   yarnConfigHook,
-  yarnBuildHook,
   yarnInstallHook,
+  yarnBuildHook,
   nodejs,
+  faketty,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -20,21 +21,29 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-iHjFR0sh2jBbW9SM1TieUggqL0AU+L8yhmrjzGK6dVM=";
   };
 
-  yarnOffllineCache = fetchYarnDeps {
+  yarnOfflineCache = fetchYarnDeps {
     yarnLock = finalAttrs.src + "/yarn.lock";
     hash = "sha256-c+hna14IWX+GBF4CyBBIal3QDA8vzJOWJLSFUPVZkYA=";
   };
 
   nativeBuildInputs = [
     yarnConfigHook
-    yarnBuildHook
     yarnInstallHook
+    yarnBuildHook
     nodejs
+    faketty
   ];
+
+  buildPhase = ''
+    # Workaround for https://github.com/nrwl/nx/issues/22445
+    runHook preBuild
+    faketty yarn --offline build
+    runHook postBuild
+  '';
 
   meta = {
     description = "ghost.org blog";
-    mainProgram = "ghost-cli";
+    mainProgram = "ghost";
     homepage = "https://github.com/TryGhost/Ghost";
     license = lib.licenses.mit;
   };
